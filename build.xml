@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<project name="phing-semanticgit" default="default" basedir=".">
+  <taskdef name="git-semantic-tag" classname="GitSemanticTagTask" />
+
+  <target name="tag">
+    <git-semantic-tag />
+  </target>
+
+  <target name="default">
+    <echo>Set an actual target, dummy.</echo>
+  </target>
+</project>
