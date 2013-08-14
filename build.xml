@@ -1,13 +1,21 @@
 <?xml version="1.0"?>
 
 <project name="phing-semanticgit" default="default" basedir=".">
+  
+  <!-- Custom classes -->
   <taskdef name="git-semantic-tag" classname="GitSemanticTagTask" />
 
+  <!-- Version properties -->
+  <property name="version.major" value="0" />
+  <property name="version.minor" value="0" />
+
+  <!-- Tasks -->
   <target name="tag">
-    <git-semantic-tag />
+    <git-semantic-tag major="${version.major}" minor="${version.minor}" />
   </target>
 
   <target name="default">
     <echo>Set an actual target, dummy.</echo>
   </target>
+
 </project>
