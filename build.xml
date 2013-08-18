@@ -12,12 +12,13 @@
   <taskdef name="git-semantic-tag" classname="GitSemanticTagTask" />
 
   <!-- Version properties -->
+  <property name="version.push" value="false" />
   <property name="version.major" value="0" />
   <property name="version.minor" value="0" />
 
   <!-- Tasks -->
   <target name="tag">
-    <git-semantic-tag major="${version.major}" minor="${version.minor}" />
+    <git-semantic-tag major="${version.major}" minor="${version.minor}" pushTag="${version.push}" />
   </target>
 
 </project>
