@@ -20,7 +20,7 @@ class GitSemanticTagTask extends Task {
    */
   private $git = "git";
 
-	/**
+  /**
    * The major version of the project.
    * @var string
    */
@@ -38,14 +38,20 @@ class GitSemanticTagTask extends Task {
    */
   private $patch = 0;
 
-	/**
-	 * Main entry point.
-	 */
-	public function main() {
-	  // Get the current version so we can split it out and generate an increment.
+  /**
+   * To push the tag automatically.
+   * @var boolean
+   */
+  private $pushTag = FALSE;
+
+  /**
+   * Main entry point.
+   */
+  public function main() {
+    // Get the current version so we can split it out and generate an increment.
     $tags = $this->getTags();
 
-	  // Tag the repository.
+    // Tag the repository.
     if (!empty($tags)) {
       $this->explodeTags($tags);
 
@@ -65,7 +71,7 @@ class GitSemanticTagTask extends Task {
       $tag = $this->buildTag();
       $this->setTag($tag, 'Initial commit');
     }
-	}
+  }
 
   /**
    * Utility.
@@ -77,7 +83,13 @@ class GitSemanticTagTask extends Task {
   private function setTag($tag, $comment) {
     $command = $this->git . ' tag -a ' . $tag . ' -m "' . $comment . '"';
     exec($command, $return);
-    print('Tagged the repository with version ' . $tag);
+    $this->log('Tagged the repository with version ' . $tag);
+
+    // Push tags if set.
+    if ($this->pushTag) {
+      $command = $this->git . ' push origin ' . $tag;
+      exec($command, $return);
+    }
   }
 
   /**
@@ -160,6 +172,14 @@ class GitSemanticTagTask extends Task {
 
   public function getPatch() {
     return $this->patch;
+  }
+
+  public function setPushTag($push_tag) {
+    $this->pushTag = (boolean)$push_tag;
+  }
+
+  public function getPatch() {
+    return $this->pushTag;
   }
 
 }

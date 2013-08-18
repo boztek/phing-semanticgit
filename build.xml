@@ -1,13 +1,24 @@
 <?xml version="1.0"?>
 
+<!--
+  File: build.xml
+  Author: Nick Schuch
+  Comment: This build file can both be used for import and an example. 
+-->
+
 <project name="phing-semanticgit" default="default" basedir=".">
+  
+  <!-- Custom classes -->
   <taskdef name="git-semantic-tag" classname="GitSemanticTagTask" />
 
+  <!-- Version properties -->
+  <property name="version.push" value="false" />
+  <property name="version.major" value="0" />
+  <property name="version.minor" value="0" />
+
+  <!-- Tasks -->
   <target name="tag">
-    <git-semantic-tag />
+    <git-semantic-tag major="${version.major}" minor="${version.minor}" pushTag="${version.push}" />
   </target>
 
-  <target name="default">
-    <echo>Set an actual target, dummy.</echo>
-  </target>
 </project>
