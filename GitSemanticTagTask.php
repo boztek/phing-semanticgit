@@ -178,7 +178,7 @@ class GitSemanticTagTask extends Task {
     $this->pushTag = (boolean)$push_tag;
   }
 
-  public function getPatch() {
+  public function getPushTag() {
     return $this->pushTag;
   }
 
