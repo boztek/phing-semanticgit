@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 
+<!--
+  File: build.xml
+  Author: Nick Schuch
+  Comment: This build file can both be used for import and an example. 
+-->
+
 <project name="phing-semanticgit" default="default" basedir=".">
   
   <!-- Custom classes -->
@@ -12,10 +18,6 @@
   <!-- Tasks -->
   <target name="tag">
     <git-semantic-tag major="${version.major}" minor="${version.minor}" />
-  </target>
-
-  <target name="default">
-    <echo>Set an actual target, dummy.</echo>
   </target>
 
 </project>
