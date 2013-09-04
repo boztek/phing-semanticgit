@@ -56,7 +56,7 @@ class GitSemanticTagTask extends Task {
       $this->explodeTags($tags);
 
       // Ensure we have a tag to increment. Otherwise lets initial commit for this major.
-      if (!empty($tags[$this->major][$this->minor])) {
+      if (!empty($tags[$this->major][$this->minor]) || $tags[$this->major][$this->minor] == 0) {
         $this->patch = $tags[$this->major][$this->minor];
         $this->patch++;
         $tag = $this->buildTag();
