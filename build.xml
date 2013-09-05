@@ -9,16 +9,21 @@
 <project name="phing-semanticgit" default="default" basedir=".">
   
   <!-- Custom classes -->
-  <taskdef name="git-semantic-tag" classname="GitSemanticTagTask" />
+  <taskdef name="semantic-tag" classname="SemanticTagTask" />
 
   <!-- Version properties -->
   <property name="version.push" value="false" />
-  <property name="version.major" value="0" />
-  <property name="version.minor" value="0" />
+  <property name="version.major" value="1" />
+  <property name="version.minor" value="1" />
+  <property name="version.log" value="true" />
 
   <!-- Tasks -->
   <target name="tag">
-    <git-semantic-tag major="${version.major}" minor="${version.minor}" pushTag="${version.push}" />
+    <semantic-tag
+      major="${version.major}"
+      minor="${version.minor}"
+      logOutput="${version.log}"
+      pushTag="${version.push}" />
   </target>
 
 </project>
